@@ -1,1 +1,1 @@
-include ':app', ':lib_uiframework'
+include ':app', ':lib_framework'
