@@ -1,0 +1,31 @@
+ext {
+    android = [
+            minSdkVersion    : 14,
+            targetSdkVersion : 25,
+            compileSdkVersion: 25,
+            buildToolsVersion: "25.0.3"
+    ]
+
+    version = [
+            androidSupportSdkVersion: "25.3.1",
+            retrofitSdkVersion      : "2.3.0",
+            dagger2SdkVersion       : "2.10",
+            butterknifeSdkVersion   : "8.6.0",
+            rxlifecycle2SdkVersion  : "2.0.1",
+    ]
+
+    dependencies = [
+            //support
+            "appcompat-v7"     : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
+            "recyclerview-v7"  : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
+            "design"           : "com.android.support:design:${version["androidSupportSdkVersion"]}",
+            "constraint-layout": 'com.android.support.constraint:constraint-layout:1.0.2',
+
+            //tools
+            "gson"             : "com.google.code.gson:gson:2.8.0",
+            "multidex"         : "com.android.support:multidex:1.0.1",
+            "dagger2"          : "com.google.dagger:dagger:${version["dagger2SdkVersion"]}",
+            "dagger2-compiler" : "com.google.dagger:dagger-compiler:${version["dagger2SdkVersion"]}",
+            "javax.annotation" : "javax.annotation:jsr250-api:1.0"
+    ]
+}
