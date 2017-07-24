@@ -1,5 +1,9 @@
 package com.ane.lib_uiframework.base;
 
-public interface BaseView<T> {
-    void setPresenter(T presenter);
+public interface BaseView {
+    void showToast(String text);
+
+    void showProgressBar();
+
+    void hideProgressBar();
 }
