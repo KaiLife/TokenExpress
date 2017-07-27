@@ -2,10 +2,11 @@ package com.ane.expresstokenapp.modules.main;
 
 import android.os.Bundle;
 
+import com.ane.expresstokenapp.App;
 import com.ane.expresstokenapp.R;
 import com.ane.expresstokenapp.base.BaseMvpActivity;
 
-public class MainActivity extends BaseMvpActivity<MainContract.Presenter> implements MainContract.View {
+public class MainActivity extends BaseMvpActivity<MainPresenter> implements MainContract.View {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,7 +15,9 @@ public class MainActivity extends BaseMvpActivity<MainContract.Presenter> implem
 
     @Override
     protected void componentInject() {
-//        getActivityComponent().inject(this);
+        DaggerMainActivityComponent.builder().
+                appComponent(((App)getApplication()).getAppComponent())
+                .build().inject(this);
     }
 
     @Override
@@ -29,6 +32,6 @@ public class MainActivity extends BaseMvpActivity<MainContract.Presenter> implem
 
     @Override
     protected void initData() {
-
+        mPresenter.siteListService();
     }
 }

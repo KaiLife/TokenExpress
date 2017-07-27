@@ -73,6 +73,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends RxFragmen
     @Override
     public void onDestroy() {
         super.onDestroy();
+        hideProgressBar();
         if (mPresenter != null) {
             mPresenter.detachView();
             mPresenter = null;

@@ -5,12 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.ane.expresstokenapp.R;
 
-import javax.inject.Inject;
-
 public class LoginActivity extends AppCompatActivity {
-
-    @Inject
-    Test test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

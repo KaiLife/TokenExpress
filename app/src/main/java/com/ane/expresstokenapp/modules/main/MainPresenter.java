@@ -17,6 +17,6 @@ public class MainPresenter extends RxPresenter<MainContract.View> implements Mai
 
     @Override
     public void siteListService() {
-
+        mView.showToast("测试dagger2");
     }
 }

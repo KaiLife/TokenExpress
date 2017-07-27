@@ -25,29 +25,23 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends RxAppComp
         setContentView(getContentViewId());
         mActivity = this;
         componentInject();
-        initView(savedInstanceState);
-        initData();
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }
+        initView(savedInstanceState);
+        initData();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        hideProgressBar();
         if (mPresenter != null) {
             mPresenter.detachView();
             mPresenter = null;
         }
-        hideProgressBar();
         App.getActivityManage().finishActivity(this);
     }
-
-//    protected ActivityComponent getActivityComponent() {
-//        return DaggerActivityComponent.builder()
-//                .appComponent(App.getAppComponent())
-//                .activityModule(new ActivityModule(this)).build();
-//    }
 
     @Override
     public void showToast(String text) {
