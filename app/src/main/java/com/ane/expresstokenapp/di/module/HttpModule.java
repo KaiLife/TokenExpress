@@ -3,7 +3,6 @@ package com.ane.expresstokenapp.di.module;
 import com.ane.expresstokenapp.BuildConfig;
 import com.ane.expresstokenapp.di.qualifier.FileUploadUrl;
 import com.ane.expresstokenapp.di.qualifier.MainUrl;
-import com.ane.expresstokenapp.net.CommonInterceptor;
 import com.ane.expresstokenapp.net.api.FileUploadApis;
 import com.ane.expresstokenapp.net.api.MainApis;
 import com.ane.expresstokenapp.net.converter.CustomGsonConverterFactory;
@@ -85,7 +84,7 @@ public class HttpModule {
         //设置缓存
         builder.addNetworkInterceptor(cacheInterceptor);
         builder.addInterceptor(cacheInterceptor);
-        builder.addInterceptor(new CommonInterceptor());
+//        builder.addInterceptor(new CommonInterceptor());
         builder.cache(cache);
         //设置超时
         builder.connectTimeout(20, TimeUnit.SECONDS);

@@ -1,9 +1,5 @@
 package com.ane.expresstokenapp.net;
 
-/**
- * Created by bvb on 2017/3/16.
- */
-
 public class HttpResult<T> {
 
     private boolean result;

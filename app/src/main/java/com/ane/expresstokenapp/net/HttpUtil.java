@@ -7,19 +7,69 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.ane.expresstokenapp.App;
+import com.ane.expresstokenapp.utils.Base64;
+import com.ane.expresstokenapp.utils.CompressUtil;
+import com.ane.expresstokenapp.utils.Constants;
+import com.ane.expresstokenapp.utils.MD5Util;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-/**
- * Created by bvb on 2017/3/16.
- */
-
 public class HttpUtil {
+
+    /**
+     * 加密请求数据
+     * @param urlType 请求服务类型
+     * @param postParam json数据格式  请求参数
+     * @param bCompress 是否压缩
+     * @return
+     */
+    public static HttpParams encodeData(String urlType, String postParam, boolean bCompress) {
+        HttpParams entity = new HttpParams();
+        if (bCompress) {
+            byte[] data = new byte[0];
+            try {
+                data = CompressUtil.compress(postParam);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            entity.setScanParams(data);
+            StringBuffer sb = new StringBuffer();
+            for (byte b : data) {
+                sb.append(b);
+            }
+            String digest = "";
+            try {
+                digest = Base64.encode(MD5Util.encryption(sb.toString() + Constants.NET_ENCRYPT_KEY
+                        + Constants.NET_ENCRYPT_SECRET).getBytes("UTF-8"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            entity.setDigest(digest);
+            entity.setType(urlType);
+            entity.setTimestamp(new Date().getTime());
+        } else {
+            entity.setParams(postParam);
+            String digest = "";
+            try {
+                digest = Base64.encode(MD5Util.encryption(postParam + Constants.NET_ENCRYPT_KEY
+                        + Constants.NET_ENCRYPT_SECRET).getBytes("UTF-8"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            entity.setDigest(digest);
+            entity.setType(urlType);
+            entity.setTimestamp(new Date().getTime());
+        }
+        return entity;
+    }
+
     public static MultipartBody.Part filesToMultipartBodyPart(File file) {
         String mime = getMimeType(App.getApp(), file);
         if (TextUtils.isEmpty(mime)) {

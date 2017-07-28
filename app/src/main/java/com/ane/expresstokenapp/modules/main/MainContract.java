@@ -14,6 +14,6 @@ public interface MainContract {
     }
 
     interface Presenter extends BasePresenter<View> {
-        void siteListService();
+        void siteListService(long lastTime, String siteCode, int siteId);
     }
 }

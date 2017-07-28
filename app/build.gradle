@@ -45,9 +45,11 @@ android {
         debug {
             //服务器地址
             //测试环境
-            buildConfigField("String", "URL", "\"http://58.215.167.5:8080/services/pdaServerRest/operate/\"")
+            buildConfigField("String", "URL", "\"http://58.215.167.5:8080/\"")
+            buildConfigField("String", "PATH", "\"services/pdaServerRest/operate\"")
             // 邱光益
-//            buildConfigField("String", "URL", "\"http://192.168.3.165:8767/kdWebservice/services/pdaServerRest/operate/\"")
+//            buildConfigField("String", "URL", "\"http://192.168.3.165:8767/\"")
+//            buildConfigField("String", "PATH", "\"kdWebservice/services/pdaServerRest/operate\"")
             //日志
             buildConfigField("boolean", "LOG_DEBUG", "true")
 
@@ -59,7 +61,8 @@ android {
 
         preRelease {
             //服务器地址
-            buildConfigField("String", "URL", "\"http://58.215.167.103:8080/services/pdaServerRest/operate/\"")
+            buildConfigField("String", "URL", "\"http://58.215.167.103:8080/\"")
+            buildConfigField("String", "PATH", "\"services/pdaServerRest/operate\"")
             //日志
             buildConfigField("boolean", "LOG_DEBUG", "true")
 
@@ -71,7 +74,8 @@ android {
 
         release {
             //服务器地址
-            buildConfigField("String", "URL", "\"http://43.254.149.92:80/services/pdaServerRest/operate/\"")
+            buildConfigField("String", "URL", "\"http://43.254.149.92:80/\"")
+            buildConfigField("String", "PATH", "\"services/pdaServerRest/operate\"")
             //日志
             buildConfigField("boolean", "LOG_DEBUG", "false")
 
