@@ -1,11 +1,22 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="TitleBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/titlebar_height</item>
+        <item name="android:background">@drawable/layer_titlebar_bg</item>
+        <item name="titlebar_leftAndRightTextColor">@color/black</item>
+        <item name="titlebar_leftAndRightTextSize">@dimen/font_size_16</item>
+        <item name="titlebar_titleTextColor">@color/black</item>
+        <item name="titlebar_titleTextSize">@dimen/font_size_18</item>
+        <item name="titlebar_leftAndRightPadding">@dimen/size_10</item>
     </style>
 
 </resources>
