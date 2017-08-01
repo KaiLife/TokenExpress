@@ -36,22 +36,23 @@ public class MainPresenter extends RxPresenter<MainContract.View> implements Mai
         params.put("lastTime", lastTime);
         params.put("siteCode", siteCode);
         params.put("siteId", siteId);
-        String postParam = new Gson().toJson(params);
-        HttpParams httpParams = HttpUtil.encodeData(HttpUrlManager.SiteServiceImpl, postParam, false);
+        HttpParams httpParams = HttpUtil.encodeData(HttpUrlManager.SiteServiceImpl,
+                new Gson().toJson(params), false);
 
         Disposable disposable = retrofitHelper.commonPostRequest(httpParams)
                 .compose(RxUtil.<HttpResult>io2MainObservable())
                 .compose(RxUtil.handleHttpResultCustom(JSONObject.class))
-//                .compose(RxUtil.<JSONObject>progressDialogObservable(mView, "", false))
+                .compose(RxUtil.<JSONObject>progressDialogObservable(mView))
                 .subscribeWith(new BaseObserver<JSONObject>() {
                     @Override
                     public void onHandleSuccessful(JSONObject jsonObject) {
-
+                        mView.showLoadSuccess();
                     }
 
                     @Override
                     public void onHandleError(Throwable t, String errorTips) {
                         mView.showToast(errorTips);
+                        mView.showLoadFailed();
                     }
                 });
         addDisposable(disposable);

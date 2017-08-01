@@ -9,6 +9,7 @@ import com.ane.expresstokenapp.di.component.DaggerAppComponent;
 import com.ane.expresstokenapp.di.module.AppModule;
 import com.ane.expresstokenapp.di.module.HttpModule;
 import com.ane.expresstokenapp.utils.ActivityManage;
+import com.ane.expresstokenapp.widget.loadingdialog.LoadingDialog;
 
 /**
  * Created by Administrator on 2017/7/26 0026.
@@ -29,6 +30,8 @@ public class App extends Application {
                 .appModule(new AppModule(getApp()))
                 .httpModule(new HttpModule())
                 .build();
+
+        LoadingDialog.initStyle(getAppComponent().getStyleManager());
     }
 
     @Override

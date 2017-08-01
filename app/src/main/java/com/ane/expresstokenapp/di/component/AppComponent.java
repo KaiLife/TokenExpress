@@ -5,6 +5,7 @@ import com.ane.expresstokenapp.App;
 import com.ane.expresstokenapp.di.module.AppModule;
 import com.ane.expresstokenapp.di.module.HttpModule;
 import com.ane.expresstokenapp.net.RetrofitHelper;
+import com.ane.expresstokenapp.widget.loadingdialog.StyleManager;
 
 import javax.inject.Singleton;
 
@@ -16,4 +17,6 @@ public interface AppComponent {
     App getContext();
 
     RetrofitHelper retrofitHelper();
+
+    StyleManager getStyleManager();
 }

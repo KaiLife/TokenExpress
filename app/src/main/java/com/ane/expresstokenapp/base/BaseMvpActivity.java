@@ -3,9 +3,12 @@ package com.ane.expresstokenapp.base;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 import com.ane.expresstokenapp.App;
+import com.ane.expresstokenapp.R;
 import com.ane.expresstokenapp.utils.ToastUtil;
+import com.ane.expresstokenapp.widget.loadingdialog.LoadingDialog;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import javax.inject.Inject;
@@ -17,6 +20,8 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends RxAppComp
     @Inject
     protected P mPresenter;
     protected Activity mActivity;
+
+    protected LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,13 +54,38 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends RxAppComp
     }
 
     @Override
-    public void showProgressBar() {
-
+    public void showLoading(String text, boolean cancelable) {
+        hideProgressBar();
+        loadingDialog = new LoadingDialog(this);
+        loadingDialog.setSuccessText(getString(R.string.dialog_load_success))
+                .setFailedText(getString(R.string.dialog_load_failed))
+                .setInterceptBack(cancelable)
+                .setLoadingText(TextUtils.isEmpty(text) ? getString(R.string.dialog_loading) : text);
+        loadingDialog.show();
     }
 
     @Override
     public void hideProgressBar() {
+        if (loadingDialog != null) {
+            loadingDialog.close();
+            loadingDialog = null;
+        }
+    }
 
+    @Override
+    public void showLoadSuccess() {
+        if (loadingDialog != null) {
+            loadingDialog.loadSuccess();
+            loadingDialog = null;
+        }
+    }
+
+    @Override
+    public void showLoadFailed() {
+        if (loadingDialog != null) {
+            loadingDialog.loadFailed();
+            loadingDialog = null;
+        }
     }
 
     protected abstract void componentInject();
