@@ -13,6 +13,8 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import javax.inject.Inject;
 
+import io.realm.Realm;
+
 public abstract class BaseMvpActivity<P extends BasePresenter> extends RxAppCompatActivity implements BaseView {
 
     protected final String TAG = this.getClass().getSimpleName();
@@ -22,6 +24,7 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends RxAppComp
     protected Activity mActivity;
 
     protected LoadingDialog loadingDialog;
+    protected Realm realm;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends RxAppComp
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }
+//        realm = Realm.getDefaultInstance();
         initView(savedInstanceState);
         initData();
     }
@@ -41,6 +45,10 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends RxAppComp
     protected void onDestroy() {
         super.onDestroy();
         hideProgressBar();
+        if (realm != null) {
+            realm.close();
+            realm = null;
+        }
         if (mPresenter != null) {
             mPresenter.detachView();
             mPresenter = null;

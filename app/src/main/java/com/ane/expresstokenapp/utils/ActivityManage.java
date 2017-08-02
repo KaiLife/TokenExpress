@@ -1,6 +1,10 @@
 package com.ane.expresstokenapp.utils;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
+
+import com.ane.expresstokenapp.App;
 
 import java.util.Stack;
 
@@ -117,14 +121,23 @@ public class ActivityManage {
     }
 
     /**
-     * 应用程序退出
+     * 退出应用程序
+     *
+     * @param isBackground 是否开开启后台运行
      */
-    public void AppExit() {
+    public void appExit(Boolean isBackground) {
         try {
             finishAllActivity();
-            System.exit(0);
+            Context context = App.getApp().getApplicationContext();
+            ActivityManager activityMgr = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+            activityMgr.restartPackage(context.getPackageName());
         } catch (Exception e) {
-            System.exit(0);
+            e.printStackTrace();
+        } finally {
+            // 注意，如果您有后台程序运行，请不要支持此句子
+            if (!isBackground) {
+                System.exit(0);
+            }
         }
     }
 }

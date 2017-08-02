@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -66,6 +67,8 @@ android {
 //            buildConfigField("String", "PATH", "\"kdWebservice/services/pdaServerRest/operate\"")
             //日志
             buildConfigField("boolean", "LOG_DEBUG", "true")
+            //数据库版本
+            buildConfigField("long", "DB_VERSION", "1")
 
             minifyEnabled false
             jniDebuggable true
@@ -79,6 +82,8 @@ android {
             buildConfigField("String", "PATH", "\"services/pdaServerRest/operate\"")
             //日志
             buildConfigField("boolean", "LOG_DEBUG", "true")
+            //数据库版本
+            buildConfigField("long", "DB_VERSION", "1")
 
             minifyEnabled false
             jniDebuggable true
@@ -92,6 +97,8 @@ android {
             buildConfigField("String", "PATH", "\"services/pdaServerRest/operate\"")
             //日志
             buildConfigField("boolean", "LOG_DEBUG", "false")
+            //数据库版本
+            buildConfigField("long", "DB_VERSION", "1")
 
             minifyEnabled true//混淆
             debuggable false

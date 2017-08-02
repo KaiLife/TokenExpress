@@ -16,6 +16,8 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import javax.inject.Inject;
 
+import io.realm.Realm;
+
 public abstract class BaseMvpFragment<P extends BasePresenter> extends RxFragment implements BaseView {
 
     protected final String TAG = this.getClass().getSimpleName();
@@ -28,6 +30,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends RxFragmen
     protected boolean isInited = false;
 
     protected LoadingDialog loadingDialog;
+    protected Realm realm;
 
     @Override
     public void onAttach(Context context) {
@@ -50,6 +53,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends RxFragmen
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }
+        //        realm = Realm.getDefaultInstance();
         if (savedInstanceState == null) {
             if (!isHidden()) {
                 isInited = true;
@@ -79,6 +83,10 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends RxFragmen
     public void onDestroy() {
         super.onDestroy();
         hideProgressBar();
+        if (realm != null) {
+            realm.close();
+            realm = null;
+        }
         if (mPresenter != null) {
             mPresenter.detachView();
             mPresenter = null;

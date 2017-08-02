@@ -3,6 +3,7 @@ package com.ane.expresstokenapp;
 import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
+import android.util.Log;
 
 import com.ane.expresstokenapp.di.component.AppComponent;
 import com.ane.expresstokenapp.di.component.DaggerAppComponent;
@@ -10,6 +11,9 @@ import com.ane.expresstokenapp.di.module.AppModule;
 import com.ane.expresstokenapp.di.module.HttpModule;
 import com.ane.expresstokenapp.utils.ActivityManage;
 import com.ane.expresstokenapp.widget.loadingdialog.LoadingDialog;
+
+import io.realm.Realm;
+import io.realm.log.RealmLog;
 
 /**
  * Created by Administrator on 2017/7/26 0026.
@@ -32,6 +36,13 @@ public class App extends Application {
                 .build();
 
         LoadingDialog.initStyle(getAppComponent().getStyleManager());
+
+        Realm.init(this);
+        Realm.deleteRealm(getAppComponent().getRealmConfiguration());
+        Realm.setDefaultConfiguration(getAppComponent().getRealmConfiguration());
+        if (BuildConfig.DEBUG) {
+            RealmLog.setLevel(Log.DEBUG);
+        }
     }
 
     @Override

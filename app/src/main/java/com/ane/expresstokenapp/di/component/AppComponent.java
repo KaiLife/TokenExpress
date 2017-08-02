@@ -10,6 +10,7 @@ import com.ane.expresstokenapp.widget.loadingdialog.StyleManager;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import io.realm.RealmConfiguration;
 
 @Singleton
 @Component(modules = {AppModule.class, HttpModule.class})
@@ -19,4 +20,6 @@ public interface AppComponent {
     RetrofitHelper retrofitHelper();
 
     StyleManager getStyleManager();
+
+    RealmConfiguration getRealmConfiguration();
 }
