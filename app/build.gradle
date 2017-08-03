@@ -152,5 +152,10 @@ dependencies {
     compile rootProject.ext.dependencies["rxpermissions2"]
     compile rootProject.ext.dependencies["rxerrorhandler2"]
 
+    //zxing
+    compile rootProject.ext.dependencies["zxing"]
+    compile rootProject.ext.dependencies["bga-qrcodecore"]
+    compile rootProject.ext.dependencies["bga-zxing"]
+
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }

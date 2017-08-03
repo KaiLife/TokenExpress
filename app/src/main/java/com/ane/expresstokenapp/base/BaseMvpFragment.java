@@ -53,7 +53,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends RxFragmen
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }
-        //        realm = Realm.getDefaultInstance();
+//        realm = Realm.getDefaultInstance();//需要的数据库操作在子类initData()方法里调用此方法
         if (savedInstanceState == null) {
             if (!isHidden()) {
                 isInited = true;
