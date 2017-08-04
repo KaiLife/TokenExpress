@@ -120,7 +120,11 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     //support
     compile rootProject.ext.dependencies["appcompat-v7"]
+    compile rootProject.ext.dependencies["recyclerview-v7"]
     compile rootProject.ext.dependencies["design"]
+
+    //下拉刷新
+    compile rootProject.ext.dependencies["xrefreshview"]
 
     //dagger2
     compile rootProject.ext.dependencies["dagger2"]
