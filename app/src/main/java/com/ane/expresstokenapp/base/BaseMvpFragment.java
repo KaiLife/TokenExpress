@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ane.expresstokenapp.App;
 import com.ane.expresstokenapp.R;
 import com.ane.expresstokenapp.utils.ToastUtil;
 import com.ane.expresstokenapp.widget.loadingdialog.LoadingDialog;
@@ -91,6 +92,8 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends RxFragmen
             mPresenter.detachView();
             mPresenter = null;
         }
+
+        App.getRefWatcher().watch(this);
     }
 
     @Override

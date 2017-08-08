@@ -22,6 +22,8 @@ public abstract class BaseSimpleActivity extends RxAppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         App.getActivityManage().finishActivity(this);
+
+        App.getRefWatcher().watch(this);
     }
 
     protected abstract int getContentViewId();

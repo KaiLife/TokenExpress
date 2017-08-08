@@ -54,6 +54,8 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends RxAppComp
             mPresenter = null;
         }
         App.getActivityManage().finishActivity(this);
+
+        App.getRefWatcher().watch(this);
     }
 
     @Override

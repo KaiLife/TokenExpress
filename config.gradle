@@ -12,6 +12,7 @@ ext {
             dagger2SdkVersion       : "2.10",
             rxlifecycle2SdkVersion  : "2.1.0",
             okhttpSdkVersion        : "3.8.1",
+            leakcanarySdkVersion    : "1.5.1",
     ]
 
     dependencies = [
@@ -43,6 +44,8 @@ ext {
             "multidex"                  : "com.android.support:multidex:1.0.1",
             "dagger2"                   : "com.google.dagger:dagger:${version["dagger2SdkVersion"]}",
             "dagger2-compiler"          : "com.google.dagger:dagger-compiler:${version["dagger2SdkVersion"]}",
+            "leakcanary-android"        : "com.squareup.leakcanary:leakcanary-android:${version["leakcanarySdkVersion"]}",
+            "leakcanary-android-no-op"  : "com.squareup.leakcanary:leakcanary-android-no-op:${version["leakcanarySdkVersion"]}",
 
             //view
             "pickerview"                : "com.contrarywind:Android-PickerView:3.2.5",

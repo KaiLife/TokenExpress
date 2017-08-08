@@ -14,7 +14,7 @@ android {
         multiDexEnabled true
 
         ndk {
-            abiFilters "armeabi", "x86"
+            abiFilters "armeabi", "armeabi-v7a", "x86"
         }
 
         jackOptions {
@@ -160,6 +160,10 @@ dependencies {
     compile rootProject.ext.dependencies["zxing"]
     compile rootProject.ext.dependencies["bga-qrcodecore"]
     compile rootProject.ext.dependencies["bga-zxing"]
+
+    //leakcanary
+    debugCompile rootProject.ext.dependencies["leakcanary-android"]
+    releaseCompile rootProject.ext.dependencies["leakcanary-android-no-op"]
 
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
