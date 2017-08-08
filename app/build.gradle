@@ -70,6 +70,10 @@ android {
             //数据库版本
             buildConfigField("long", "DB_VERSION", "1")
 
+            manifestPlaceholders = [
+                    UMENG_APPKEY_VALUE: "5847a9661061d21d57001704",
+            ]
+
             minifyEnabled false
             jniDebuggable true
             debuggable true
@@ -84,6 +88,10 @@ android {
             buildConfigField("boolean", "LOG_DEBUG", "true")
             //数据库版本
             buildConfigField("long", "DB_VERSION", "1")
+
+            manifestPlaceholders = [
+                    UMENG_APPKEY_VALUE: "5847a9661061d21d57001704",
+            ]
 
             minifyEnabled false
             jniDebuggable true
@@ -100,14 +108,67 @@ android {
             //数据库版本
             buildConfigField("long", "DB_VERSION", "1")
 
+            manifestPlaceholders = [
+                    UMENG_APPKEY_VALUE: "5847a9661061d21d57001704",
+            ]
+
             minifyEnabled true//混淆
             debuggable false
             jniDebuggable false
             zipAlignEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            applicationVariants.all { variant ->
+                renameAPK(variant, defaultConfig)
+            }
         }
     }
+
+    //多渠道打包
+    productFlavors {
+        ane {}
+
+//        anbei {}
+//        anfen {}
+//        andzhuoyuan {}
+//        pcsix {}
+//        wandoujia {}
+//        anzhuozhijia {}
+//        youyi {}
+//        baidu {}
+//        c360 {}
+//        yingyonbao{}
+//        xiaomi{}
+//        anzhi{}
+//        sougou{}
+//        lianxiang{}
+//
+//        huawei {}
+//        sangxing{}
+
+        productFlavors.all {
+            flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        }
+    }
+}
+
+//发布应用市场apk命名
+def renameAPK(variant, defaultConfig) {
+    variant.outputs.each { output ->
+        def formattedDate = new Date().format('yyyyMMddHHmmss')
+        def appName = getAppName()
+        def file = output.packageApplication.outputFile
+        //发版时打开，开发时关闭
+//        def fileName = appName + "_" + defaultConfig.versionCode + "_" + defaultConfig.versionName + "_" + formattedDate + "_" + variant.productFlavors[0].name + "_" + variant.buildType.name + ".apk"
+        def fileName = "TokenApp_${variant.buildType.name}_v${defaultConfig.versionName}.apk"
+        output.packageApplication.outputFile = new File(file.parent, fileName)
+    }
+}
+
+def getAppName() {
+    def stringsFile = android.sourceSets.main.res.sourceFiles.find { it.name.equals 'strings.xml' }
+    return new XmlParser().parse(stringsFile).string.find { it.@name.equals 'app_name' }.text()
 }
 
 repositories {
@@ -164,6 +225,9 @@ dependencies {
     //leakcanary
     debugCompile rootProject.ext.dependencies["leakcanary-android"]
     releaseCompile rootProject.ext.dependencies["leakcanary-android-no-op"]
+
+    //umeng
+    compile 'com.umeng.analytics:analytics:latest.integration'
 
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }

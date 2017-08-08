@@ -14,6 +14,7 @@ import com.ane.expresstokenapp.R;
 import com.ane.expresstokenapp.utils.ToastUtil;
 import com.ane.expresstokenapp.widget.loadingdialog.LoadingDialog;
 import com.trello.rxlifecycle2.components.support.RxFragment;
+import com.umeng.analytics.MobclickAgent;
 
 import javax.inject.Inject;
 
@@ -78,6 +79,20 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends RxFragmen
             initView();
             initData();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //友盟页面统计
+        MobclickAgent.onPageStart(TAG);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //友盟页面统计
+        MobclickAgent.onPageEnd(TAG);
     }
 
     @Override

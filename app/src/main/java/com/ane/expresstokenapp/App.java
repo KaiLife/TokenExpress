@@ -14,6 +14,7 @@ import com.ane.expresstokenapp.utils.log.CrashHandler;
 import com.ane.expresstokenapp.widget.loadingdialog.LoadingDialog;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+import com.umeng.analytics.MobclickAgent;
 
 import io.realm.Realm;
 import io.realm.log.RealmLog;
@@ -47,6 +48,9 @@ public class App extends Application {
 
         CrashHandler.getInstance().init(getApplicationContext());
 
+        MobclickAgent.setDebugMode(BuildConfig.DEBUG);
+        MobclickAgent.openActivityDurationTrack(false);
+
         if (BuildConfig.DEBUG) {
             RealmLog.setLevel(Log.DEBUG);
 
@@ -56,6 +60,7 @@ public class App extends Application {
                 return;
             }
             refWatcher = LeakCanary.install(this);
+//            refWatcher = RefWatcher.DISABLED;
         } else {
             refWatcher = RefWatcher.DISABLED;
         }

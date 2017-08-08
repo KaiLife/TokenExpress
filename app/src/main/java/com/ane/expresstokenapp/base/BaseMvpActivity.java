@@ -10,6 +10,7 @@ import com.ane.expresstokenapp.R;
 import com.ane.expresstokenapp.utils.ToastUtil;
 import com.ane.expresstokenapp.widget.loadingdialog.LoadingDialog;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+import com.umeng.analytics.MobclickAgent;
 
 import javax.inject.Inject;
 
@@ -39,6 +40,22 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends RxAppComp
 //        realm = Realm.getDefaultInstance();//需要的数据库操作在子类initData()方法里调用此方法
         initView(savedInstanceState);
         initData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart(TAG);
+        //友盟页面统计
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(TAG);
+        //友盟页面统计
+        MobclickAgent.onPause(this);
     }
 
     @Override

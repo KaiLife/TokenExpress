@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.ane.expresstokenapp.App;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+import com.umeng.analytics.MobclickAgent;
 
 public abstract class BaseSimpleActivity extends RxAppCompatActivity {
 
@@ -19,10 +20,23 @@ public abstract class BaseSimpleActivity extends RxAppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        //友盟页面统计
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //友盟页面统计
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         App.getActivityManage().finishActivity(this);
-
         App.getRefWatcher().watch(this);
     }
 
