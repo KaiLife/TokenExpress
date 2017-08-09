@@ -71,7 +71,7 @@ android {
             buildConfigField("long", "DB_VERSION", "1")
 
             manifestPlaceholders = [
-                    UMENG_APPKEY_VALUE: "5847a9661061d21d57001704",
+                    UMENG_APPKEY_VALUE: "598a6f15f43e485fef0018ef",
             ]
 
             minifyEnabled false
@@ -90,7 +90,7 @@ android {
             buildConfigField("long", "DB_VERSION", "1")
 
             manifestPlaceholders = [
-                    UMENG_APPKEY_VALUE: "5847a9661061d21d57001704",
+                    UMENG_APPKEY_VALUE: "598a6f15f43e485fef0018ef",
             ]
 
             minifyEnabled false
@@ -109,7 +109,7 @@ android {
             buildConfigField("long", "DB_VERSION", "1")
 
             manifestPlaceholders = [
-                    UMENG_APPKEY_VALUE: "5847a9661061d21d57001704",
+                    UMENG_APPKEY_VALUE: "598a6f15f43e485fef0018ef",
             ]
 
             minifyEnabled true//混淆
