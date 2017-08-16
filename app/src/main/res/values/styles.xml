@@ -8,6 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SplashBase" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+
+    <style name="SplashTheme" parent="SplashBase"></style>
+
     <style name="TitleBar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/titlebar_height</item>

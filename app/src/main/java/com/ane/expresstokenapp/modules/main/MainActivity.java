@@ -10,11 +10,6 @@ import com.ane.expresstokenapp.widget.viewgroup.TitleBar;
 public class MainActivity extends BaseMvpActivity<MainPresenter> implements MainContract.View {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     protected void componentInject() {
         DaggerMainActivityComponent.builder().
                 appComponent(((App) getApplication()).getAppComponent())

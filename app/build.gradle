@@ -6,7 +6,8 @@ android {
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.ane.expresstokenapp"
+//        applicationId "com.ane.expresstokenapp"
+        applicationId "com.ane.tokenapp"
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
@@ -160,7 +161,7 @@ def renameAPK(variant, defaultConfig) {
         def appName = getAppName()
         def file = output.packageApplication.outputFile
         //发版时打开，开发时关闭
-//        def fileName = appName + "_" + defaultConfig.versionCode + "_" + defaultConfig.versionName + "_" + formattedDate + "_" + variant.productFlavors[0].name + "_" + variant.buildType.name + ".apk"
+//        def fileName = appName + "_" + defaultConfig.versionName + "_" + formattedDate + "_" + variant.productFlavors[0].name + "_" + variant.buildType.name + ".apk"
         def fileName = "TokenApp_${variant.buildType.name}_v${defaultConfig.versionName}.apk"
         output.packageApplication.outputFile = new File(file.parent, fileName)
     }
@@ -231,3 +232,4 @@ dependencies {
 
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
+

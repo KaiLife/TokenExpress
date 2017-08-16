@@ -15,7 +15,9 @@ public abstract class BaseSimpleActivity extends RxAppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         App.getActivityManage().addActivity(this);
-        setContentView(getContentViewId());
+        if (getContentViewId() != 0) {
+            setContentView(getContentViewId());
+        }
         init(savedInstanceState);
     }
 
