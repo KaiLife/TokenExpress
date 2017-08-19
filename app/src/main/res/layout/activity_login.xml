@@ -5,7 +5,7 @@
 
         <variable
             name="presenter"
-            type="com.ane.expresstokenapp.modules.login.LoginPresenter" />
+            type="com.ane.expresstokenapp.modules.login.LoginContract.Presenter" />
 
     </data>
 
