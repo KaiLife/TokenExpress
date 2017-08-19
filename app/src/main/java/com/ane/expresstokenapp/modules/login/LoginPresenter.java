@@ -1,7 +1,5 @@
 package com.ane.expresstokenapp.modules.login;
 
-import android.view.View;
-
 import com.ane.expresstokenapp.base.RxPresenter;
 import com.ane.expresstokenapp.net.RetrofitHelper;
 
@@ -19,7 +17,7 @@ public class LoginPresenter extends RxPresenter<LoginContract.View> implements L
     }
 
     @Override
-    public void login(View v) {
+    public void login() {
         mView.showToast("登录");
     }
 }
