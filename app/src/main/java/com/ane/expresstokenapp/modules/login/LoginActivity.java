@@ -1,11 +1,13 @@
 package com.ane.expresstokenapp.modules.login;
 
 import android.os.Bundle;
-import com.ane.expresstokenapp.R;
-import com.ane.expresstokenapp.App;
-import com.ane.expresstokenapp.base.BaseMvpActivity;
 
-public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements LoginContract.View {
+import com.ane.expresstokenapp.App;
+import com.ane.expresstokenapp.R;
+import com.ane.expresstokenapp.base.BaseMvpvmActivity;
+import com.ane.expresstokenapp.databinding.ActivityLoginBinding;
+
+public class LoginActivity extends BaseMvpvmActivity<LoginPresenter, ActivityLoginBinding> implements LoginContract.View {
 
     @Override
     protected void componentInject() {
@@ -26,5 +28,6 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
 
     @Override
     protected void initData() {
+        mBind.setPresenter(mPresenter);
     }
 }
