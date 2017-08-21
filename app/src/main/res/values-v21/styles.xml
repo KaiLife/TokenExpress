@@ -1,7 +1,8 @@
 <resources>
 
     <style name="SplashTheme" parent="SplashBase">
-        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
 </resources>

@@ -1,8 +1,13 @@
 <resources>
-    <string name="app_name">TokenExpress</string>
+    <string name="app_name">安能快递</string>
 
     <string name="dialog_loading">加载中...</string>
     <string name="dialog_load_success">加载成功</string>
     <string name="dialog_load_failed">加载失败</string>
+
+    <string name="input_hint_net_code">请输入网点编号</string>
+    <string name="input_hint_login_name">请输入账号</string>
+    <string name="input_hint_login_password">请输入密码</string>
+    <string name="login">登录</string>
 
 </resources>
