@@ -14,6 +14,6 @@ public interface LoginContract {
     }
 
     interface Presenter extends BasePresenter<View> {
-        void login(android.view.View v);
+        void login();
     }
 }

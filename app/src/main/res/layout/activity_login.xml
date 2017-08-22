@@ -152,7 +152,7 @@
                 android:layout_marginRight="@dimen/size_24"
                 android:layout_marginTop="@dimen/size_16"
                 android:background="@drawable/selector_btn_half_circle"
-                android:onClick="@{presenter::login}"
+                android:onClick="@{() -> presenter.login()}"
                 android:text="@string/login"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_size_16" />
